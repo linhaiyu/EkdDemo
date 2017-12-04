@@ -1,1 +1,2 @@
 # EkdDemo
+本项目为前端开发示例，学习使用JS来开发前端，AngularJS1.x作为前端框架，同时使用基于Python的Tornado构建后台Web服务，通过WebSocket进行双向通信。
