@@ -1,0 +1,39 @@
+<div class="jumbotron text-center">
+    <!-- <h2>EKD ( Earlier Kick Detection ) System</h2> -->
+    <h2>Welcome to the <span class="text-danger">EKD ( Earlier Kick Detection )</span> system</h2>
+    <p>
+         Through the EKD system, we could monitor the flow state, carry out the early detection of blowout.
+    </p>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" ng-switch="isAuthenticated">
+            <img src="/static/images/user/login.jpg" alt="no image" class="img-thumbnail" ng-switch-when="true">
+            <img src="/static/images/user/pre_login.jpg" alt="no image" class="img-thumbnail" ng-switch-when="false">
+        </div>
+
+        <div class="col-md-6" ng-show="isAuthenticated">
+            <h4>Hello dear <strong>{{session.userName}}</strong>, you have been logged in system as <strong>{{session.userRole}}.</strong></h4>
+        </div>
+
+        <div class="col-md-6" ng-show="!isAuthenticated">
+            <form class="form-horizontal" name="loginForm" ng-submit="login(credentials)" novalidate>
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    <input type="text" id="username" class="form-control" ng-model="credentials.username" first-focus>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" ng-model="credentials.password">
+                </div>
+                <div class="form-group" ng-if="warning_msg!=''">
+                    <div class="alert alert-danger">{{warning_msg}}</div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+</div>

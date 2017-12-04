@@ -1,0 +1,60 @@
+<div class="panel panel-default" style="width: 1200px">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong>Inner Pipe Location</strong></h1>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="location_left" style="height: 820px; width:330px; float:left">
+                    <img id="inner_pipe_static" src="/static/images/innerpipe/background.png" alt="position of the inner pipe detection" style="height: 820px; width:330px; border:1px solid #E1E2E5">
+                </div>
+
+                <div id="location_right" style="height: 820px; width:838px; float:left; border:1px solid #E1E2E5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <img id="inner_pipe_img" src="/static/images/innerpipe/flow2Dmap.png" class="img-responsive" alt="inner pipe location"> -->
+                            <img id="inner_pipe_img" ng-src="{{ip_img}}" class="img-responsive" alt="inner pipe location">
+                        </div>
+                    </div>
+
+                    <div style="height: 220px; width: 838px; border: 1px solid #E1E2E5; padding-top: 5px; background: #E5E5E5">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><strong>Time Stamp</strong></div>
+                                    <div class="panel-body">
+                                        {{data_time | date:"yyyy-MM-dd HH:mm:ss:sss"}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><strong>Length</strong> (inch)</div>
+                                    <div class="panel-body">
+                                        {{data_length | number:3}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><strong>Angle</strong> (pi)</div>
+                                    <div class="panel-body">
+                                        {{data_angle | number:3}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

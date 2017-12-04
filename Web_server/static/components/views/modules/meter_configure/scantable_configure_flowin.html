@@ -1,0 +1,266 @@
+<div class="panel panel-primary">
+    <div class="panel panel-body">
+        <form id="flowin_scantable" name="flowin_scantable" class="form-horizontal w5c-form" w5c-form-validate="vm.validateOptions" novalidate>
+            <div class="form-group">
+                <label for="fi_stmode" class="col-md-2 control-label">St Mode</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_stmode" name="fi_stmode" max="2" min="0" step="1" value="0" class="form-control" ng-model="fi_setting.stmode" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">St Mode: <strong>0 - Doppler, 1 - Transit-Time, 2 - Tool-Joint-Locator</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_transducer_num" class="col-md-2 control-label">Transducer Num</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_transducer_num" name="fi_transducer_num" max="32" min="1" step="1" value="16" class="form-control" ng-model="fi_setting.transducer_num" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Transducer number, the valid input value range is <strong>[1, 32]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_prt" class="col-md-2 control-label">PRT</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_prt" name="fi_prt" max="1.000" min="0.000" step="0.001" value="0.001" class="form-control" ng-model="fi_setting.prt" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">PRT value, the valid input value range is <strong>[0.0, 1.0]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_prf" class="col-md-2 control-label">PRN</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_prf" name="fi_prf" max="512" min="1" step="1" value="128" class="form-control" ng-model="fi_setting.prf" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">PRN value, the valid input value range is <strong>[1, 512]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_f0" class="col-md-2 control-label">F0</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_f0" name="fi_f0" max="250" min="100" step="1" value="250" class="form-control" ng-model="fi_setting.f0" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">F0 value, the valid input value range is <strong>[100k, 250k]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_pulse_st" class="col-md-2 control-label">Pulse ST</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_pulse_st"  name="fi_pulse_st" step="0.01" value="0.16" class="form-control" ng-model="fi_setting.pulse_st" associate="fi_prt" w5c-customizer="vm.pulse_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Pulse ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_pulse_et" class="col-md-2 control-label">Pulse ET</label>
+                <div class="col-md-3">
+                    <select name="fi_pulse_et" id="fi_pulse_et" class="form-control" ng-model="fi_setting.pulse_et" required
+                        ng-options="item as item for item in fi_setting_threshold.pulse_et_items"></select>
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">The Pulse ET value based on the PulseST value and the F0 value</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_damp_st" class="col-md-2 control-label">Damp ST</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_damp_st" name="fi_damp_st" step="0.01" value="8.32" class="form-control" ng-model="fi_setting.damp_st" associate="fi_prt" w5c-customizer="vm.damp_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Damp ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_damp_et" class="col-md-2 control-label">Damp ET</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_damp_et" name="fi_damp_et" step="0.01" value="18.32" class="form-control" ng-model="fi_setting.damp_et" associate="fi_prt" w5c-customizer="vm.damp_et_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Damp ET value, the valid input value range is <strong>[DampST, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_sample_st" class="col-md-2 control-label">Sample ST</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_sample_st" name="fi_sample_st" step="0.01" value="0.16" class="form-control" ng-model="fi_setting.sample_st" associate="fi_prt" w5c-customizer="vm.sample_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Sample ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_sample_et" class="col-md-2 control-label">Sample ET</label>
+                <div class="col-md-3">
+                    <span id="fi_sample_et"> {{fi_setting.sample_et}} </span>
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">The Sample ET value depends on the SampleST</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_afe_tgc_st" class="col-md-2 control-label">AfeTgc ST</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_afe_tgc_st" name="fi_afe_tgc_st" step="0.01" value="0.64" class="form-control" ng-model="fi_setting.afetgc_st" associate="fi_prt" w5c-customizer="vm.afetgc_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">AfeTgc ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_lna_tgc_st" class="col-md-2 control-label">LnaTgc ST</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_lna_tgc_st" name="fi_lna_tgc_st" step="0.01" value="0.64" class="form-control" ng-model="fi_setting.lnatgc_st" associate="fi_prt" w5c-customizer="vm.lnatgc_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">LnaTgc ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_activetransdis" class="col-md-2 control-label">ActiveTransDis</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_activetransdis" name="fi_activetransdis" min="1" max="16" step="1" value="1" class="form-control" ng-model="fi_setting.active_trans_dis" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">ActiveTransDis value, the valid input value range is <strong>[1, 16]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fi_dopplermodesel" class="col-md-2 control-label">Doppler Mode</label>
+                <div class="col-md-3">
+                    <input type="number" id="fi_dopplermodesel" name="fi_dopplermodesel" min="0" max="1" step="1" value="0" class="form-control" ng-model="fi_setting.doppler_mode" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Doppler Mode, please select: <strong>0 - continue</strong> or <strong>1 - scan</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="flowin_phylogchmap" class="col-md-2 control-label">PhyLogChMap</label>
+                <div class="col-md-3">
+                        <button type="button" class="btn btn-default" id="flowin_phylogchmap" name="flowin_phylogchmap" ng-click="set_flowin_phylogchmap()" ng-disabled="configure_dis_flag">PhyLogMap Configure</button>
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">PhyLogMap Configuration</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-5">
+                    <button type="reset" class="btn btn-default" ng-click="reset_fi_setting()" ng-disabled="configure_dis_flag">Reset Configuration</button>
+                    <button type="submit" class="btn btn-success" ng-disabled="configure_dis_flag" w5c-form-submit="confirm_fi_setting()">Confirm Configuration</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Flow Out Phylogmap Configure Dialog -->
+<div class="modal" id="flowin_phylogchmap_cfg" tabindex="-1" role="dialog" aria-labelledby="warning modal ...">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Flow IN Phylogmap Configuration</h3>
+            </div>
+           <div class="modal-body">
+                <form id="flowin_scantable_mapch" name="flowin_scantable_mapch" ng-submit="confirm_fi_mapch(flowin_scantable_mapch.$valid)" novalidate>
+                    <table class="table">
+                        <tr class="info">
+                            <th>#</th>
+                            <th>Board<br>Number</th>
+                            <th>Sync<br>Number</th>
+                            <th>Phy<br>Channel</th>
+                            <th>Pulse<br>Enable</th>
+                            <th>Receive<br>Enable</th>
+                            <th>Log<br>Channel</th>
+                        </tr>
+                        <tr class="info">
+                            <td>.</td>
+                            <td><p class="help-block">[0, 3]</p></td>
+                            <td><p class="help-block">[0, 3]</p></td>
+                            <td><p class="help-block">[0, 7]</p></td>
+                            <td><p class="help-block">[0, 1]</p></td>
+                            <td><p class="help-block">[0, 1]</p></td>
+                            <td><p class="help-block">[0, 31]</p></td>
+                        </tr>
+
+                        <tr ng-repeat="item in fi_phylogmapch" screpeat-finish="flowin_mapch_init()">
+                            <td><strong>#{{$index+1}}</strong></td>
+                            <td ng-class="{'has-error': flowin_scantable_mapch.fi_boardnum_{{$index+1}}.$invalid}">
+                                <input type="number" id="fi_boardnum_{{$index+1}}" name="fi_boardnum_{{$index+1}}" class="form-control input-mini" min="0" max="3" value="0" ng-model="fi_phylogmapch[$index].BoardNum" required integer/>
+                                <p ng-show="flowin_scantable_mapch.fi_boardnum_{{$index+1}}.$error.integer" class="help-block">Not valid</p>
+                                <p ng-show="flowin_scantable_mapch.fi_boardnum_{{$index+1}}.$error.min" class="help-block">Value too small</p>
+                                <p ng-show="flowin_scantable_mapch.fi_boardnum_{{$index+1}}.$error.max" class="help-block">Value too big</p>
+                            </td>
+
+                            <td ng-class="{'has-error': flowin_scantable_mapch.fi_syncnum_{{$index+1}}.$invalid}">
+                                <input type="number" id="fi_syncnum_{{$index+1}}" name="fi_syncnum_{{$index+1}}" class="form-control input-mini" min="0" max="3" value="0" ng-model="fi_phylogmapch[$index].SyncNum" required integer/>
+                                <p ng-show="flowin_scantable_mapch.fi_syncnum_{{$index+1}}.$error.integer" class="help-block">Not valid</p>
+                                <p ng-show="flowin_scantable_mapch.fi_syncnum_{{$index+1}}.$error.min" class="help-block">Value too small</p>
+                                <p ng-show="flowin_scantable_mapch.fi_syncnum_{{$index+1}}.$error.max" class="help-block">Value too big</p>
+                            </td>
+
+                            <td ng-class="{'has-error': flowin_scantable_mapch.fi_phychannel_{{$index+1}}.$invalid}">
+                                <input type="number" id="fi_phychannel_{{$index+1}}" name="fi_phychannel_{{$index+1}}" class="form-control input-mini" min="0" max="7" value="0" ng-model="fi_phylogmapch[$index].PhyChannel" required integer/>
+                                <p ng-show="flowin_scantable_mapch.fi_phychannel_{{$index+1}}.$error.integer" class="help-block">Not valid</p>
+                                <p ng-show="flowin_scantable_mapch.fi_phychannel_{{$index+1}}.$error.min" class="help-block">Value too small</p>
+                                <p ng-show="flowin_scantable_mapch.fi_phychannel_{{$index+1}}.$error.max" class="help-block">Value too big</p>
+                            </td>
+                            <td>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default btn-xs" ng-click="set_pulse_enable($index, true)">
+                                        <input type="radio" name="fi_pulse_enable_{{$index+1}}" id="fipe_enable_{{$index+1}}" autocomplete="off">enable</input>
+                                    </label>
+                                    <label class="btn btn-default btn-xs" ng-click="set_pulse_enable($index, false)">
+                                        <input type="radio" name="fi_pulse_enable_{{$index+1}}" id="fipe_disable_{{$index+1}}" autocomplete="off">disable</input>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default btn-xs" ng-click="set_receive_enable($index, true)">
+                                        <input type="radio" name="fi_receive_enable_{{$index+1}}" id="fire_enable_{{$index+1}}" autocomplete="off">enable</input>
+                                    </label>
+                                    <label class="btn btn-default btn-xs" ng-click="set_receive_enable($index, false)">
+                                        <input type="radio" name="fi_receive_enable_{{$index+1}}" id="fire_disable_{{$index+1}}" autocomplete="off">disable</input>
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td ng-class="{'has-error': flowin_scantable_mapch.fi_logchannel_{{$index+1}}.$invalid}">
+                                <input type="number" id="fi_logchannel_{{$index+1}}" name="fi_logchannel_{{$index+1}}" class="form-control input-mini" min="0" max="31" value="0" ng-model="fi_phylogmapch[$index].LogChannel" required integer/>
+                                <p ng-show="flowin_scantable_mapch.fi_logchannel_{{$index+1}}.$error.integer" class="help-block">Not valid</p>
+                                <p ng-show="flowin_scantable_mapch.fi_logchannel_{{$index+1}}.$error.min" class="help-block">Value too small</p>
+                                <p ng-show="flowin_scantable_mapch.fi_logchannel_{{$index+1}}.$error.max" class="help-block">Value too big</p>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="reset_fi_mapch()" form="flowin_scantable_mapch">Reset Configuration</button>
+                <button type="submit" class="btn btn-success" form="flowin_scantable_mapch">Confirm Configuration</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+
+<!-- <div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong>WITTS TIME</strong></h1>
+    </div>
+    <div class="panel-body">
+        <div class="text-info pull-right">
+            <h4>{{curtime}}</h4>
+        </div>
+    </div>
+</div> -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Witts system time -->
+            <div class="well well-sm">
+                <!-- <h4>WITTS SYSTEM TIME:  <span class="label label-primary">{{curtime | date:"yyyy-MM-dd HH:mm:ss:sss"}}</span></h4> -->
+                <h4>WITTS SYSTEM TIME:  <span class="label label-primary" style="font-size:18px">{{curtime | date:"yyyy-MM-dd HH:mm:ss:sss"}}</span></h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Corriolis -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><strong>Corriolis</strong></h1>
+                </div>
+                <div class="panel-body">
+                    <canvas id="witts_corriolis" class="center-block" height="300" width="350"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Temperature -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><strong>Temperature</strong></h1>
+                </div>
+                <div class="panel-body">
+                    <canvas id="witts_thermometer" class="center-block" height="300" width="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Corriolis -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><strong>Pre Pressure</strong></h1>
+                </div>
+                <div class="panel-body">
+                    <canvas id="witts_pre_pressure" class="center-block" height="250" width="300"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Corriolis -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><strong>Post Pressure</strong></h1>
+                </div>
+                <div class="panel-body">
+                    <canvas id="witts_post_pressure" class="center-block" height="250" width="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

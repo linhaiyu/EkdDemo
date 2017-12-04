@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ekd's Control System</title>
+        <link rel="shortcut icon" type="image/png" href="static/images/favicon.png">
+        <!-- <link rel="stylesheet" href="/static/third_parts/bootstrap/css/bootstrap.css"> -->
+        <link rel="stylesheet" href="/static/third_parts/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/third_parts/angular-w5c-validator/style.css">
+        <link rel="stylesheet" href="/static/third_parts/datetimepicker/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="/static/stylesheets/ekd_style.css">
+    </head>
+
+    <!-- BODY -->
+    <body ng-app="lin-web-app" class="ekd_bgcolor">
+        <div class="main ekd_page_width" ui-view></div>
+    </body>
+
+    <!-- JQuery -->
+    <script src="/static/third_parts/jquery/jquery-2.2.3.min.js"></script>
+
+    <!-- AngularJS -->
+    <script src="/static/third_parts/angular/angular.min.js"></script>
+    <script src="/static/third_parts/angular-ui-router/angular-ui-router.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/static/third_parts/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Highcharts -->
+    <script src="/static/third_parts/Highcharts/js/highcharts.js"></script>
+    <script src="/static/third_parts/Highcharts/js/modules/exporting.js"></script>
+    <!-- <script src="/static/third_parts/Highcharts/js/themes/gray.js"></script> -->
+
+    <!--  RGraph -->
+    <script src="/static/third_parts/RGraph/libraries/RGraph.common.core.js"></script>
+    <script src="/static/third_parts/RGraph/libraries/RGraph.thermometer.js"></script>
+    <script src="/static/third_parts/RGraph/libraries/RGraph.gauge.js"></script>
+    <script src="/static/third_parts/RGraph/libraries/RGraph.meter.js"></script>
+    <script src="/static/third_parts/RGraph/libraries/RGraph.bar.js"></script>
+    <script src="/static/third_parts/RGraph/libraries/RGraph.hbar.js"></script>
+
+    <!-- Validate -->
+    <!-- <script src="/static/third_parts/JQueryValidate/jquery.validate.js"></script> -->
+    <!-- <script src="/static/third_parts/angular-w5c-validator/w5cValidator.js"></script> -->
+    <script src="/static/third_parts/angular-w5c-validator/w5cValidator.min.js"></script>
+
+    <!-- Datetimepicker -->
+    <!-- <script src="/static/third_parts/datetimepicker/js/bootstrap-datetimepicker.js"></script> -->
+    <script src="/static/third_parts/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- main -->
+    <script src="/static/components/js/main/app.js"></script>
+    <script src="/static/components/js/main/constant.js"></script>
+    <script src="/static/components/js/main/auth_service.js"></script>
+    <script src="/static/components/js/main/web_socket_service.js"></script>
+    <script src="/static/components/js/main/directives.js"></script>
+    <script src="/static/components/js/main/system_service.js"></script>
+    <script src="/static/components/js/main/main_service.js"></script>
+    <script src="/static/components/js/main/firstpage_controller.js"></script>
+    <script src="/static/components/js/main/main_controller.js"></script>
+    <script src="/static/components/js/main/debug_controller.js"></script>
+
+    <!-- indicator -->
+    <script src="/static/components/js/indicator/indicator_controller.js"></script>
+    <script src="/static/components/js/indicator/indicator_vfr_service.js"></script>
+    <script src="/static/components/js/indicator/indicator_vfr_controller.js"></script>
+    <script src="/static/components/js/indicator/indicator_vp_service.js"></script>
+    <script src="/static/components/js/indicator/indicator_vp_controller.js"></script>
+    <script src="/static/components/js/indicator/indicator_vp_flowout_controller.js"></script>
+    <script src="/static/components/js/indicator/indicator_vp_flowin_controller.js"></script>
+    <script src="/static/components/js/indicator/indicator_innerpipe_service.js"></script>
+    <script src="/static/components/js/indicator/indicator_innerpipe_controller.js"></script>
+    <script src="/static/components/js/indicator/tjl_indicator_service.js"></script>
+    <script src="/static/components/js/indicator/tjl_indicator_controller.js"></script>
+
+    <!-- meter configure -->
+    <script src="/static/components/js/meter_cfg/meter_configure_service.js"></script>
+    <script src="/static/components/js/meter_cfg/meter_configure_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/hv_tgc_service.js"></script>
+    <script src="/static/components/js/meter_cfg/hv_tgc_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/hv_tgc_flowout_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/hv_tgc_flowin_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/hv_tgc_flowtjl_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/scantable_directive.js"></script>
+    <script src="/static/components/js/meter_cfg/scantable_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/scantable_service.js"></script>
+    <script src="/static/components/js/meter_cfg/scantable_flowout_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/scantable_flowin_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/scantable_flowtjl_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/algorithm_service.js"></script>
+    <script src="/static/components/js/meter_cfg/algorithm_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/algorithm_flowout_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/algorithm_flowin_controller.js"></script>
+    <script src="/static/components/js/meter_cfg/algorithm_flowtjl_controller.js"></script>
+
+    <!-- Diagnostic -->
+    <script src="/static/components/js/diagnostic/diagnostic_controller.js"></script>
+    <script src="/static/components/js/diagnostic/environment_service.js"></script>
+    <script src="/static/components/js/diagnostic/environment_controller.js"></script>
+    <script src="/static/components/js/diagnostic/environment_flowout_controller.js"></script>
+    <script src="/static/components/js/diagnostic/environment_flowin_controller.js"></script>
+    <script src="/static/components/js/diagnostic/environment_flowtjl_controller.js"></script>
+    <script src="/static/components/js/diagnostic/transducer_directive.js"></script>
+    <script src="/static/components/js/diagnostic/transducer_service.js"></script>
+    <script src="/static/components/js/diagnostic/transducer_controller.js"></script>
+    <script src="/static/components/js/diagnostic/transducer_flowout_controller.js"></script>
+    <script src="/static/components/js/diagnostic/transducer_flowin_controller.js"></script>
+    <script src="/static/components/js/diagnostic/transducer_flowtjl_controller.js"></script>
+    <script src="/static/components/js/diagnostic/power_service.js"></script>
+    <script src="/static/components/js/diagnostic/power_controller.js"></script>
+    <script src="/static/components/js/diagnostic/power_flowout_controller.js"></script>
+    <script src="/static/components/js/diagnostic/power_flowin_controller.js"></script>
+    <script src="/static/components/js/diagnostic/power_flowtjl_controller.js"></script>
+    <script src="/static/components/js/diagnostic/algorithm_dis_service.js"></script>
+    <script src="/static/components/js/diagnostic/algorithm_dis_controller.js"></script>
+    <script src="/static/components/js/diagnostic/algorithm_dis_flowout_controller.js"></script>
+    <script src="/static/components/js/diagnostic/algorithm_dis_flowin_controller.js"></script>
+    <script src="/static/components/js/diagnostic/algorithm_dis_flowtjl_controller.js"></script>
+    <script src="/static/components/js/diagnostic/communication_service.js"></script>
+    <script src="/static/components/js/diagnostic/communication_controller.js"></script>
+    <script src="/static/components/js/diagnostic/communication_flowout_controller.js"></script>
+    <script src="/static/components/js/diagnostic/communication_flowin_controller.js"></script>
+    <script src="/static/components/js/diagnostic/communication_flowtjl_controller.js"></script>
+    <script src="/static/components/js/diagnostic/witts_service.js"></script>
+    <script src="/static/components/js/diagnostic/witts_controller.js"></script>
+
+    <!-- Storage -->
+    <script src="/static/components/js/storage/storage_service.js"></script>
+    <script src="/static/components/js/storage/storage_controller.js"></script>
+    <script src="/static/components/js/storage/data_archive_controller.js"></script>
+
+    <!-- Monitor -->
+    <script src="/static/components/js/monitor/monitor_controller.js"></script>
+    <script src="/static/components/js/monitor/historical_data_service.js"></script>
+    <script src="/static/components/js/monitor/historical_data_controller.js"></script>
+
+</html>

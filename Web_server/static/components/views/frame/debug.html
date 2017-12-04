@@ -1,0 +1,240 @@
+<table class="table table-bordered table-striped">
+    <tr class="warning">
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <span>Data From GUI:</span>
+                    <button class="btn btn-info" ng-click="trigger_vfr()">Update VFR</button>
+                    <span>VFR period(ms):</span>
+                    <input type="number" id="gui_vfr_period" min="0" max="2000" step="10" value="250">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary" ng-click="start_update_vfr()">
+                            <input type="radio" name="auto_update_vfr" id="auto_update_vfr_start" autocomplete="off">Start Update VFR</input>
+                        </label>
+                        <label class="btn btn-primary active" ng-click="stop_update_vfr()">
+                            <input type="radio" name="auto_update_vfr" id="auto_update_vfr_stop" autocomplete="off" checked>Stop Update VFR</input>
+                        </label>
+                    </div>
+                    <button class="btn btn-success" ng-click="trigger_flowout_vp()">Update FlowOut VP</button>
+                    <button class="btn btn-success" ng-click="trigger_flowin_vp()">Update FlowIn VP</button>
+                    <span>VP period(ms):</span>
+                    <input type="number" id="gui_vp_period" min="0" max="2000" step="10" value="200">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary" ng-click="start_update_vp()">
+                            <input type="radio" name="auto_update_vp" id="auto_update_vp_start" autocomplete="off">Start Update VP</input>
+                        </label>
+                        <label class="btn btn-primary active" ng-click="stop_update_vp()">
+                            <input type="radio" name="auto_update_vp" id="auto_update_vp_stop" autocomplete="off" checked>Stop Update VP</input>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+    <tr class="warning">
+        <td>
+            <form class="form-inline">
+                <span>Data From GUI:</span>
+                <div class="form-group">
+                    <span>Msg period(ms):</span>
+                    <input type="number" id="gui_msg_period" min="0" max="2000" step="10" value="250">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary" ng-click="start_update_vfr_vp()">
+                            <input type="radio" name="auto_update_vfr_vp" id="auto_update_vfr_vp_start" autocomplete="off">Start Update VFR&VP</input>
+                        </label>
+                        <label class="btn btn-primary active" ng-click="stop_update_vfr_vp()">
+                            <input type="radio" name="auto_update_vfr_vp" id="auto_update_vfr_vp_stop" autocomplete="off" checked>Stop Update VFR&VP</input>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+    <tr class="warning">
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <span>Data From Server:</span>
+                    <button class="btn btn-success" ng-click="trigger_test_vpdata()">VP Test</button>
+                    <!-- <button class="btn btn-info" ng-click="trigger_test_vfrdata()">VFR Test</button> -->
+
+                    <span>VFR period(s):</span>
+                    <input type="number" id="vfr_period" min="0.01" max="100.00" step="0.01" value="1.00">
+                    <span>VP period(s):</span>
+                    <input type="number" id="vp_period" min="0.01" max="100.00" step="0.01" value="2.00">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary" ng-click="start_test_vfrdata()">
+                            <input type="radio" name="vfr_test" id="vfr_test_start" autocomplete="off">Start VFR Test</input>
+                        </label>
+                        <label class="btn btn-primary active" ng-click="stop_test_vfrdata()">
+                            <input type="radio" name="vfr_test" id="vfr_test_stop" autocomplete="off" checked>Stop VFR Test</input>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="info_data" />
+                    <button class="btn btn-default" ng-click="trigger_info()">Trigger Infomation</button>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="err_data" />
+                    <button class="btn btn-default" ng-click="trigger_errinfo()">Trigger Error</button>
+                </div>
+            </form>
+        </td>
+    </tr>
+    <!--<tr>
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="err_data" />
+                    <button class="btn btn-default" ng-click="trigger_errinfo()">Trigger Error</button>
+                </div>
+            </form>
+        </td>
+    </tr>-->
+    <tr class="warning">
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="radio" name="radio_button" value="red"> Red
+                    <input type="radio" name="radio_button" value="green"> Green
+                    <input type="radio" name="radio_button" value="yellow"> Yellow
+                    <input type="radio" name="radio_button" value="all"> All
+                    <input type="radio" name="radio_button" value="none"> None
+                    <button class="btn btn-default" ng-click="trigger_kick()">Trigger Kick</button>
+                </div>
+            </form>
+        </td>
+    </tr>
+    <tr class="warning">
+        <td>
+            <form class="form-inline">
+                <div class="control-group">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active" ng-click="set_rsv_flag(false)">
+                            <input type="radio" name="rsv_flag" id="rsv_flag_close" autocomplete="off" checked>Don't Show Receive message</input>
+                        </label>
+                        <label class="btn btn-primary" ng-click="set_rsv_flag(true)">
+                            <input type="radio" name="rsv_flag" id="rsv_flag_open" autocomplete="off">Show Receive message</input>
+                        </label>
+                    </div>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active" ng-click="set_send_flag(false)">
+                            <input type="radio" name="send_flag" id="send_flag_close" autocomplete="off" checked>Don't Show Send message</input>
+                        </label>
+                        <label class="btn btn-primary" ng-click="set_send_flag(true)">
+                            <input type="radio" name="send_flag" id="send_flag_open" autocomplete="off">Show Send message</input>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+    <tr class="info">
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">Please Choose Type</div>
+                <div class="panel-body">
+                    <select name="type_selector" id="type_selector" class="form-control">
+                        <option value="flow_out">Flow out</option>
+                        <option value="flow_in">Flow in</option>
+                        <option value="flow_tjl">Flow tjl</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <button class="btn btn-default" ng-click="update_bd_temperatures(0)">Update Board 1 Temperatures</button>
+                    <button class="btn btn-default" ng-click="update_bd_temperatures(1)">Update Board 2 Temperatures</button>
+                    <button class="btn btn-default" ng-click="update_bd_temperatures(2)">Update Board 3 Temperatures</button>
+                    <button class="btn btn-default" ng-click="update_bd_temperatures(3)">Update Board 4 Temperatures</button>
+                    <button class="btn btn-primary" ng-click="update_allbd_temperatures()">Update All Board Temperatures</button>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <button class="btn btn-default" ng-click="update_trs_temperatures(0)">Update TRS 1 Temperatures</button>
+                    <button class="btn btn-default" ng-click="update_trs_temperatures(1)">Update TRS 2 Temperatures</button>
+                    <button class="btn btn-default" ng-click="update_trs_temperatures(2)">Update TRS 3 Temperatures</button>
+                    <button class="btn btn-default" ng-click="update_trs_temperatures(3)">Update TRS 4 Temperatures</button>
+                    <button class="btn btn-primary" ng-click="update_alltrs_temperatures()">Update All TRS Temperatures</button>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <button class="btn btn-default" ng-click="update_env_humidity()">Update Humidity</button>
+                    <button class="btn btn-default" ng-click="update_env_accelerator()">Update Accelerator</button>
+                    <button class="btn btn-success" ng-click="set_water_leak(0)">Water Leak: WELL</button>
+                    <button class="btn btn-danger" ng-click="set_water_leak(1)">Water Leak: LEAK</button>
+                </div>
+            </div>
+
+            <div class="panel panel-danger">
+                <div class="panel-body">
+                    <select name="board_selector" id="board_selector">
+                        <option value="0">Board1</option>
+                        <option value="1">Board2</option>
+                        <option value="2">Board3</option>
+                        <option value="3">Board4</option>
+                    </select>
+                    <button class="btn btn-default" ng-click="update_hv_power()">Update HV Power</button>
+                    <button class="btn btn-success" ng-click="update_low_power(0, 0)">Bd1-lp-pass</button>
+                    <button class="btn btn-danger" ng-click="update_low_power(0, 1)">Bd2-lp-error</button>
+                    <button class="btn btn-success" ng-click="update_low_power(1, 0)">Bd2-lp-pass</button>
+                    <button class="btn btn-danger" ng-click="update_low_power(1, 1)">Bd2-lp-error</button>
+                    <button class="btn btn-success" ng-click="update_low_power(2, 0)">Bd3-lp-pass</button>
+                    <button class="btn btn-danger" ng-click="update_low_power(2, 1)">Bd3-lp-error</button>
+                    <button class="btn btn-success" ng-click="update_low_power(3, 0)">Bd4-lp-pass</button>
+                    <button class="btn btn-danger" ng-click="update_low_power(3, 1)">Bd4-lp-error</button>
+
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-body">
+                    <button class="btn btn-info" ng-click="update_transducer_state()">Update Transducer</button>
+                </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="update_commu_status('come')">COME</button>
+                    <!-- <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="update_commu_status('come2')">COME 2</button> -->
+                    <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="update_commu_status('afe1')">AFE 1</button>
+                    <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="update_commu_status('afe2')">AFE 2</button>
+                    <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="update_commu_status('afe3')">AFE 3</button>
+                    <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="update_commu_status('afe4')">AFE 4</button>
+                    <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="update_commu_status('rapidio')">RapidIO</button>
+                    <button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off" ng-click="update_commu_status('com10g')">COM 10G</button>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <button class="btn btn-warning" ng-click="update_algorithm_snr()">Update SNR</button>
+                    <button class="btn btn-success" ng-click="update_algorithm_atten()">Update Attenuation</button>
+                    <button class="btn btn-warning" ng-click="update_algorithm_power_spec()">Update Power Spec</button>
+                    <button class="btn btn-danger" ng-click="update_algorithm_saturation()">Update Saturation</button>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr class="warning">
+        <td>
+            <form class="form-inline">
+                <div class="form-group">
+                    <button class="btn btn-warning" ng-click="update_witts_data()">Update WITTS</button>
+                    <button type="button" class="btn btn-success" ng-click="update_innerpipe()">Update Inner Pipe Location</button>
+                    <button type="button" class="btn btn-danger" ng-click="update_tjl()">Update TJL Indicator</button>
+                    <button type="button" class="btn btn-info" ng-click="show_sys_progress_bar()">Show System Progress Bar</button>
+                    <button type="button" class="btn btn-info" ng-click="hide_sys_progress_bar()">Hide System Progress Bar</button>
+                </div>
+            </form>
+        </td>
+    </tr>
+</table>

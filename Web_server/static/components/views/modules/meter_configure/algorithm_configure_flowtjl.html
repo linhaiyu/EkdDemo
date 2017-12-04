@@ -1,0 +1,89 @@
+<div class="panel panel-primary">
+    <div class="panel panel-body">
+        <form id="flowtjl_algorithm" name="flowtjl_algorithm" class="form-horizontal w5c-form" w5c-form-validate="vm.validateOptions" novalidate>
+            <div class="form-group">
+                <label for="innerpipe_switch" class="col-md-3 control-label">Inner Pipe Switch</label>
+                <div class="col-md-3">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default" ng-click="InnerPipeSwitchOn()">
+                            <input type="radio" name="ips_options" id="ips_on" autocomplete="off" >On</input>
+                        </label>
+                        <label class="btn btn-default active" ng-click="InnerPipeSwitchOff()">
+                            <input type="radio" name="ips_options" id="ips_off" autocomplete="off" checked >Off</input>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="kick_detection_window" class="col-md-3 control-label">Kick Detection Window</label>
+                <div class="col-md-3">
+                    <input type="number" id="kick_detection_window" name="kick_detection_window" class="form-control" ng-model="settings_model.KickDetectionWindow" max="1000" min="0" step="1" value="60" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Kick Detection Window, the valid input value range is <strong>[0, 1000]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="c_mud" class="col-md-3 control-label">C Mud</label>
+                <div class="col-md-3">
+                    <input type="number" id="c_mud" name="c_mud" class="form-control" ng-model="settings_model.C_mud" max="10000.0" min="0.0" step="1.0" value="1240.0" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">C Mud, the valid input value range is <strong>[0, 10000]</strong></p>
+                </div>
+            </div>
+
+             <div class="form-group">
+                <label for="c_liner" class="col-md-3 control-label">C Liner</label>
+                <div class="col-md-3">
+                    <input type="number" id="c_liner" name="c_liner" class="form-control" ng-model="settings_model.C_liner" max="10000.0" min="0.0" step="1.0" value="2539.0" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">C Liner, the valid input value range is <strong>[0, 10000]</strong></p>
+                </div>
+            </div>
+
+             <div class="form-group">
+                <label for="yellow_kick_threshold" class="col-md-3 control-label">Yellow Kick Threshold</label>
+                <div class="col-md-3">
+                    <input type="number" id="yellow_kick_threshold" name="yellow_kick_threshold" class="form-control" ng-model="settings_model.YellowKickThreshold" max="100" min="0" step="1" value="10" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Yellow Kick Threshold, the valid input value range is <strong>[0, 100]</strong></p>
+                </div>
+            </div>
+
+             <div class="form-group">
+                <label for="red_kick_threshold" class="col-md-3 control-label">Red Kick Threshold</label>
+                <div class="col-md-3">
+                    <input type="number" id="red_kick_threshold" name="red_kick_threshold" class="form-control" ng-model="settings_model.RedKickThreshold" max="100" min="0" step="1" value="25" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Red Kick Threshold, the valid input value range is <strong>[0, 100]</strong></p>
+                </div>
+            </div>
+
+             <div class="form-group">
+                <label for="flowin_change_threshold" class="col-md-3 control-label">FlowIn Change Threshold</label>
+                <div class="col-md-3">
+                    <input type="number" id="flowin_change_threshold" name="flowin_change_threshold" class="form-control" ng-model="settings_model.FlowInChangeThreshold" max="100" min="0" step="1" value="25" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">FlowIn Change Threshold, the valid input value range is <strong>[0, 100]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-6 col-md-5">
+                    <button type="reset" class="btn btn-default" ng-click="reset_setting()" ng-disabled="configure_dis_flag">Reset Configuration</button>
+                    <button type="submit" class="btn btn-info" ng-disabled="configure_dis_flag" w5c-form-submit="confirm_setting()">Confirm Configuration</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

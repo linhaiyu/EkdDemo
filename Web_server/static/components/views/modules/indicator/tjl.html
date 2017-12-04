@@ -1,0 +1,45 @@
+<div style="height:800px; width: 1394px; border: 1px solid #c0c0c0">
+    <div style="height:802px; width:290px; float:left">
+        <img src="/static/images/tjl/joint.png" alt="position of the joint location" style="border: 1px solid #C0C0C0">
+    </div>
+    <div style="height:801px; width:300px; float:left" id="pipe_radius" style="border: 1px solid #C0C0C0"></div>
+    <div style="height:802px; width: 802px; float:left">
+        <div style="margin-bottom: 20px">
+                <img id="innerpipe_diameter_img" ng-src="{{ip_dynamic_img_path}}" alt="position of the innerpipe and pipe diameter"
+                style="border: 1px solid #C0C0C0">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Information</div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Tjl Location: </strong>[{{data_tjl_location_x | number:3}}, {{data_tjl_location_y | number:3}}]
+                </li>
+                <li class="list-group-item">
+                    <strong>Tjl Radius: </strong>{{data_tjl_radius | number:3}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Time Stamp: </strong>{{data_tjl_timestamp | date:"yyyy-MM-dd HH:mm:ss:sss"}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>
+
+<div class="container-fluid" style="width: 1394px; margin-top: 10px; padding: 5px">
+    <div class="panel panel-default" style="margin-bottom: 0px; background-color: #E1E2E5; border-color: #c0c0c0">
+        <div class="panel-body" style="padding: 5px">
+            <div class="col-md-1">
+                <button class="btn btn-primary btn-xs" ng-click="clear_data()">Clear all Data</button>
+            </div>
+            <div class="col-md-2">
+                <label for="chart_color">Line Color:</label>
+                <input type="color" id="chart_color" />
+            </div>
+            <div class="col-md-2">
+                <label for="chart_color">Background Color:</label>
+                <input type="color" id="chart_bg_color" />
+            </div>
+        </div>
+    </div>
+</div>

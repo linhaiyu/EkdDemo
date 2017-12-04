@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" id="vertical_chart1" style="height: 800px"></div>
+        <div class="col-md-3" id="vertical_chart2" style="height: 800px"></div>
+        <div class="col-md-3" id="vertical_chart3" style="height: 800px"></div>
+        <div class="col-md-3" id="vertical_chart4" style="height: 800px"></div>
+    </div>
+
+    <div class="row" style="paddin[: 5px; margin-top: 5px">
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-xs" ng-click="clear_data('flow_in')">Clear</button>
+            <input type="color" id="chart1_color">
+            <input type="color" id="chart1_bg_color">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-xs" ng-click="clear_data('flow_out')">Clear</button>
+            <input type="color" id="chart2_color">
+            <input type="color" id="chart2_bg_color">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-xs" ng-click="clear_data('delta_flow')">Clear</button>
+            <input type="color" id="chart3_color">
+            <input type="color" id="chart3_bg_color">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-xs" ng-click="clear_data('coriolis_flow')">Clear</button>
+            <input type="color" id="chart4_color">
+            <input type="color" id="chart4_bg_color">
+        </div>
+    </div>
+</div>

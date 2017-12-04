@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li id="hv_link"><a href="#" ui-sref="main.meter_configure.hv_configure.flowout">HV & TGC </a></li>
+                <li id="scantable_link"><a href="#" ui-sref="main.meter_configure.scan_table.flowout">Scan Table</a></li>
+                <li id="algorithm_cfg_link"><a href="#" ui-sref="main.meter_configure.algorithm.flowout">Algorithm</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10 col-md-offset-2">
+            <!-- page content -->
+            <div class="row" ui-view></div>
+
+            <!-- infomation box -->
+            <div class="row">
+                <form name="info_frm" action="#">
+                    <textarea name="info_box" class="form-control" style="resize: none" rows="5" readonly ng-bind="info_data.text"></textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

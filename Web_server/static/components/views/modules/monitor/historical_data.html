@@ -1,0 +1,220 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12" id="vfr_chart1" style="height:700px"></div>
+            </div>
+            <div class="panel-group" id="chart1_configure" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="chart1_headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#chart1_configure" href="#chart1_collapseOne" aria-expanded="true" aria-controls="chart1_collapseOne">
+                                Data Settings
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="chart1_collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="chart1_headingOne">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="chart1_start_time" class="col-md-4">Start Time</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="chart1_start_time" class="form-control form_datetime" size="16" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart1_end_time" class="col-md-4">End Time</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="chart1_end_time" class="form-control form_datetime" size="16" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart1_vfr_type" class="col-md-4">Data Type</label>
+                                    <div class="col-md-8">
+                                        <select name="chart1_vfr_type_selector" id="chart1_vfr_type" class="form-control" ng-model="chart1_vfr_type">
+                                            <option ng-repeat="item in data_type" value={{item.name}}>{{item.text}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <button class="btn btn-primary col-md-offset-6 col-md-5" ng-click="chart1_start_read_back()" ng-disabled="!enable_chart1_flag">Start</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="chart1_headingTwo">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#chart1_configure" href="#chart1_collapseTwo" aria-expanded="true" aria-controls="chart1_collapseTwo">
+                                Chart Settings
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="chart1_collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="chart1_headingTwo">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="chart1_color" class="col-md-3">Line Color</label>
+                                    <div class="col-md-3">
+                                        <input type="color" id="chart1_color">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart1_bg_color" class="col-md-3">Background Color</label>
+                                    <div class="col-md-3">
+                                        <input type="color" id="chart1_bg_color">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>                                
+            </div>
+        </div>
+
+        <div class="col-md-4">  
+            <div class="row">
+                <div class="col-md-12" id="vfr_chart2" style="height:700px"></div>
+            </div>
+            <div class="panel-group" id="chart2_configure" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="chart2_headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#chart2_configure" href="#chart2_collapseOne" aria-expanded="true" aria-controls="chart2_collapseOne">
+                                Data Settings
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="chart2_collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="chart2_headingOne">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="chart2_start_time" class="col-md-4">Start Time</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="chart2_start_time" class="form-control form_datetime" size="16" value="" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart2_end_time" class="col-md-4">End Time</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="chart2_end_time" class="form-control form_datetime" size="16" value="" readonly>
+                                    </div>                          
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart2_vfr_type" class="col-md-4">Data Type</label>
+                                    <div class="col-md-8">
+                                        <select name="chart2_vfr_type_selector" id="chart2_vfr_type" class="form-control" ng-model="chart2_vfr_type">
+                                            <option ng-repeat="item in data_type" value={{item.name}}>{{item.text}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <button class="btn btn-primary col-md-offset-6 col-md-5" ng-click="chart2_start_read_back()" ng-disabled="!enable_chart2_flag">Start</button>
+                            </form>
+                        </div>
+                    </div>  
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="chart2_headingTwo">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#chart2_configure" href="#chart2_collapseTwo" aria-expanded="true" aria-controls="chart2_collapseTwo">
+                                Chart Settings
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="chart2_collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="chart2_headingTwo">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="chart2_color" class="col-md-3">Line Color</label>
+                                    <div class="col-md-3">
+                                        <input type="color" id="chart2_color">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart2_bg_color" class="col-md-3">Background Color</label>
+                                    <div class="col-md-3">
+                                        <input type="color" id="chart2_bg_color">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>                     
+            </div>  
+        </div>
+
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12" id="vfr_chart3" style="height:700px"></div>
+            </div>
+            <div class="panel-group" id="chart3_configure" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="chart3_headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#chart3_configure" href="#chart3_collapseOne" aria-expanded="true" aria-controls="chart3_collapseOne">
+                                Data Settings
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="chart3_collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="chart3_headingOne">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="chart3_start_time" class="col-md-4">Start Time</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="chart3_start_time" class="form-control form_datetime" size="16" value="" readonly>
+                                    </div> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart3_end_time" class="col-md-4">End Time</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="chart3_end_time" class="form-control form_datetime" size="16" value="" readonly>
+                                    </div> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart3_vfr_type" class="col-md-4">Data Type</label>
+                                    <div class="col-md-8">
+                                        <select name="chart3_vfr_type_selector" id="chart3_vfr_type" class="form-control" ng-model="chart3_vfr_type">
+                                            <option ng-repeat="item in data_type" value={{item.name}}>{{item.text}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <button class="btn btn-primary col-md-offset-6 col-md-5" ng-click="chart3_start_read_back()" ng-disabled="!enable_chart3_flag">Start</button>
+                            </form>
+                        </div>
+                    </div>  
+                </div>            
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="chart3_headingTwo">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#chart3_configure" href="#chart3_collapseTwo" aria-expanded="true" aria-controls="chart3_collapseTwo">
+                                Chart Settings
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="chart3_collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="chart3_headingTwo">
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="chart3_color" class="col-md-3">Line Color</label>
+                                    <div class="col-md-3">
+                                        <input type="color" id="chart3_color">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="chart3_bg_color" class="col-md-3">Background Color</label>
+                                    <div class="col-md-3">
+                                        <input type="color" id="chart3_bg_color">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+
+        </div>
+    </div>
+</div>

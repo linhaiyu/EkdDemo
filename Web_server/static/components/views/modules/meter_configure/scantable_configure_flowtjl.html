@@ -1,0 +1,268 @@
+<div class="panel panel-primary">
+    <div class="panel panel-body">
+        <form id="flowtjl_scantable" name="flowtjl_scantable" class="form-horizontal w5c-form" w5c-form-validate="vm.validateOptions" novalidate>
+            <div class="form-group">
+                <label for="ftjl_stmode" class="col-md-2 control-label">St Mode</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_stmode" name="ftjl_stmode" max="2" min="0" step="1" value="0" class="form-control" ng-model="ftjl_setting.stmode" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">St Mode: <strong>0 - Doppler, 1 - Transit-Time, 2 - Tool-Joint-Locator</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_transducer_num" class="col-md-2 control-label">Transducer Num</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_transducer_num" name="ftjl_transducer_num" max="32" min="1" step="1" value="16" class="form-control" ng-model="ftjl_setting.transducer_num" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Transducer number, the valid input value range is <strong>[1, 32]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_prt" class="col-md-2 control-label">PRT</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_prt" name="ftjl_prt" max="1.000" min="0.000" step="0.001" value="0.001" class="form-control" ng-model="ftjl_setting.prt" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">PRT value, the valid input value range is <strong>[0.0, 1.0]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_prf" class="col-md-2 control-label">PRN</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_prf" name="ftjl_prf" max="512" min="1" step="1" value="128" class="form-control" ng-model="ftjl_setting.prf" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">PRN value, the valid input value range is <strong>[1, 512]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_f0" class="col-md-2 control-label">F0</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_f0" name="ftjl_f0" max="250" min="100" step="1" value="250" class="form-control" ng-model="ftjl_setting.f0" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">F0 value, the valid input value range is <strong>[100k, 250k]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_pulse_st" class="col-md-2 control-label">Pulse ST</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_pulse_st"  name="ftjl_pulse_st" step="0.01" value="0.16" class="form-control" ng-model="ftjl_setting.pulse_st" associate="ftjl_prt" w5c-customizer="vm.pulse_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Pulse ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_pulse_et" class="col-md-2 control-label">Pulse ET</label>
+                <div class="col-md-3">
+                    <select name="ftjl_pulse_et" id="ftjl_pulse_et" class="form-control" ng-model="ftjl_setting.pulse_et" required
+                    ng-options="item as item for item in ftjl_setting_threshold.pulse_et_items"></select>
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">The Pulse ET value based on the PulseST value and the F0 value</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_damp_st" class="col-md-2 control-label">Damp ST</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_damp_st" name="ftjl_damp_st" step="0.01" value="8.32" class="form-control" ng-model="ftjl_setting.damp_st" associate="ftjl_prt" w5c-customizer="vm.damp_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Damp ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_damp_et" class="col-md-2 control-label">Damp ET</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_damp_et" name="ftjl_damp_et" step="0.01" value="18.32" class="form-control" ng-model="ftjl_setting.damp_et" associate="ftjl_prt" w5c-customizer="vm.damp_et_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Damp ET value, the valid input value range is <strong>[DampST, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_sample_st" class="col-md-2 control-label">Sample ST</label>
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_sample_st" name="ftjl_sample_st" step="0.01" value="0.16" class="form-control" ng-model="ftjl_setting.sample_st" associate="ftjl_prt" w5c-customizer="vm.sample_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Sample ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_sample_et" class="col-md-2 control-label">Sample ET</label>
+                <div class="col-md-3">
+                    <span id="ftjl_sample_et"> {{ftjl_setting.sample_et}} </span>
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">The Sample ET value depends on the SampleST</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_afe_tgc_st" class="col-md-2 control-label">AfeTgc ST</label>
+                <div class="col-md-3">
+                        <input type="number" id="ftjl_afe_tgc_st" name="ftjl_afe_tgc_st" step="0.01" value="0.64" class="form-control" ng-model="ftjl_setting.afetgc_st" associate="ftjl_prt" w5c-customizer="vm.afetgc_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">AfeTgc ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_lna_tgc_st" class="col-md-2 control-label">LnaTgc ST</label>
+                <div class="col-md-3">
+                        <input type="number" id="ftjl_lna_tgc_st" name="ftjl_lna_tgc_st" step="0.01" value="0.64" class="form-control" ng-model="ftjl_setting.lnatgc_st" associate="ftjl_prt" w5c-customizer="vm.lnatgc_st_customizer()" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">LnaTgc ST value, the valid input value range is <strong>[0us, PRT]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_activetransdis" class="col-md-2 control-label">ActiveTransDis</label>
+                <div class="col-md-3">
+                        <input type="number" id="ftjl_activetransdis" name="ftjl_activetransdis" min="1" max="16" step="1" value="1" class="form-control" ng-model="ftjl_setting.active_trans_dis" required />
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">ActiveTransDis value, the valid input value range is <strong>[1, 16]</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ftjl_dopplermodesel" class="col-md-2 control-label">Doppler Mode</label>
+
+                <div class="col-md-3">
+                    <input type="number" id="ftjl_dopplermodesel" name="ftjl_dopplermodesel" min="0" max="1" step="1" value="0" class="form-control" ng-model="ftjl_setting.doppler_mode" required />
+
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">Doppler Mode, please select: <strong>0 - continue</strong> or <strong>1 - scan</strong></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="flowtjl_phylogchmap" class="col-md-2 control-label">PhyLogChMap</label>
+                <div class="col-md-3">
+                        <button type="button" class="btn btn-default" id="flowtjl_phylogchmap" name="flowtjl_phylogchmap" ng-click="set_flowtjl_phylogchmap()" ng-disabled="configure_dis_flag">PhyLogMap Configure</button>
+                </div>
+                <div class="col-md-6">
+                    <p class="help-block">PhyLogMap Configuration</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-5">
+                    <button type="reset" class="btn btn-default" ng-click="reset_ftjl_setting()" ng-disabled="configure_dis_flag">Reset Configuration</button>
+                    <button type="submit" class="btn btn-info" ng-disabled="configure_dis_flag" w5c-form-submit="confirm_ftjl_setting()">Confirm Configuration</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Flow TJL Phylogmap Configure Dialog -->
+<div class="modal" id="flowtjl_phylogchmap_cfg" tabindex="-1" role="dialog" aria-labelledby="warning modal ...">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Tool Joint Locator Phylogmap Configuration</h3>
+            </div>
+           <div class="modal-body">
+                <form id="flowtjl_scantable_mapch" name="flowtjl_scantable_mapch" ng-submit="confirm_ftjl_mapch(flowtjl_scantable_mapch.$valid)" novalidate>
+                    <table class="table">
+                        <tr class="info">
+                            <th>#</th>
+                            <th>Board<br>Number</th>
+                            <th>Sync<br>Number</th>
+                            <th>Phy<br>Channel</th>
+                            <th>Pulse<br>Enable</th>
+                            <th>Receive<br>Enable</th>
+                            <th>Log<br>Channel</th>
+                        </tr>
+                        <tr class="info">
+                            <td>.</td>
+                            <td><p class="help-block">[0, 3]</p></td>
+                            <td><p class="help-block">[0, 3]</p></td>
+                            <td><p class="help-block">[0, 7]</p></td>
+                            <td><p class="help-block">[0, 1]</p></td>
+                            <td><p class="help-block">[0, 1]</p></td>
+                            <td><p class="help-block">[0, 31]</p></td>
+                        </tr>
+
+                        <tr ng-repeat="item in ftjl_phylogmapch" screpeat-finish="flowtjl_mapch_init()">
+                            <td><strong>#{{$index+1}}</strong></td>
+                            <td ng-class="{'has-error': flowtjl_scantable_mapch.ftjl_boardnum_{{$index+1}}.$invalid}">
+                                <input type="number" id="ftjl_boardnum_{{$index+1}}" name="ftjl_boardnum_{{$index+1}}" class="form-control input-mini" min="0" max="3" value="0" ng-model="ftjl_phylogmapch[$index].BoardNum" required integer />
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_boardnum_{{$index+1}}.$error.integer" class="help-block">Not valid</p>
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_boardnum_{{$index+1}}.$error.min" class="help-block">Value too small</p>
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_boardnum_{{$index+1}}.$error.max" class="help-block">Value too big</p>
+                            </td>
+
+                            <td ng-class="{'has-error': flowtjl_scantable_mapch.ftjl_syncnum_{{$index+1}}.$invalid}">
+                                <input type="number" id="ftjl_syncnum_{{$index+1}}" name="ftjl_syncnum_{{$index+1}}" class="form-control input-mini" min="0" max="3" value="0" ng-model="ftjl_phylogmapch[$index].SyncNum" required integer />
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_syncnum_{{$index+1}}.$error.integer" class="help-block">Not valid</p>
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_syncnum_{{$index+1}}.$error.min" class="help-block">Value too small</p>
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_syncnum_{{$index+1}}.$error.max" class="help-block">Value too big</p>
+                            </td>
+
+                            <td ng-class="{'has-error': flowtjl_scantable_mapch.ftjl_phychannel_{{$index+1}}.$invalid}">
+                                <input type="number" id="ftjl_phychannel_{{$index+1}}" name="ftjl_phychannel_{{$index+1}}" class="form-control input-mini" min="0" max="7" value="0" ng-model="ftjl_phylogmapch[$index].PhyChannel" required integer />
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_phychannel_{{$index+1}}.$error.integer" class="help-block">Not valid</p>
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_phychannel_{{$index+1}}.$error.min" class="help-block">Value too small</p>
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_phychannel_{{$index+1}}.$error.max" class="help-block">Value too big</p>
+                            </td>
+                            <td>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default btn-xs" ng-click="set_pulse_enable($index, true)">
+                                        <input type="radio" name="ftjl_pulse_enable_{{$index+1}}" id="ftjlpe_enable_{{$index+1}}" autocomplete="off">enable</input>
+                                    </label>
+                                    <label class="btn btn-default btn-xs" ng-click="set_pulse_enable($index, false)">
+                                        <input type="radio" name="ftjl_pulse_enable_{{$index+1}}" id="ftjlpe_disable_{{$index+1}}" autocomplete="off">disable</input>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default btn-xs" ng-click="set_receive_enable($index, true)">
+                                        <input type="radio" name="ftjl_receive_enable_{{$index+1}}" id="ftjlre_enable_{{$index+1}}" autocomplete="off">enable</input>
+                                    </label>
+                                    <label class="btn btn-default btn-xs" ng-click="set_receive_enable($index, false)">
+                                        <input type="radio" name="ftjl_receive_enable_{{$index+1}}" id="ftjlre_disable_{{$index+1}}" autocomplete="off">disable</input>
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td ng-class="{'has-error': flowtjl_scantable_mapch.ftjl_logchannel_{{$index+1}}.$invalid}">
+                                <input type="number" id="ftjl_logchannel_{{$index+1}}" name="ftjl_logchannel_{{$index+1}}" class="form-control input-mini" min="0" max="31" value="0" ng-model="ftjl_phylogmapch[$index].LogChannel" required integer />
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_logchannel_{{$index+1}}.$error.integer" class="help-block">Not valid</p>
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_logchannel_{{$index+1}}.$error.min" class="help-block">Value too small</p>
+                                <p ng-show="flowtjl_scantable_mapch.ftjl_logchannel_{{$index+1}}.$error.max" class="help-block">Value too big</p>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="reset_ftjl_mapch()" form="flowtjl_scantable_mapch">Reset Configuration</button>
+                <button type="submit" class="btn btn-info" form="flowtjl_scantable_mapch">Confirm Configuration</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

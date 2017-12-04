@@ -1,0 +1,186 @@
+<nav class="navbar navbar-inverse navbar-fixed-top ekd_nav_width">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="main"><span class="glyphicon glyphicon-globe"></span> EKD</a>
+        </div>
+
+        <div id="navbar">
+            <!-- Main Functions Menu -->
+            <ul class="nav navbar-nav">
+                <li ng-class="{active: $state.includes('main.indicator')}">
+                    <a id="indicator" href="#" ui-sref="main.indicator.vfr">Indicator</a>
+                </li>
+                <li ng-class="{active: $state.includes('main.meter_configure')}">
+                    <a id="meter_configure" href="#" ui-sref="main.meter_configure.hv_configure.flowout">Meter Configuration</a>
+                </li>
+                <li ng-class="{active: $state.includes('main.diagnostic')}">
+                    <a id="diagnostic" href="#" ui-sref="main.diagnostic.environment.flowout">Diagnostic</a>
+                </li>
+                <li ng-class="{active: $state.includes('main.monitor')}">
+                    <a id="monitor" href="#" ui-sref="main.monitor.historical_data">Monitor</a>
+                </li>
+                <li ng-class="{active: $state.includes('main.storage')}">
+                    <a id="storage" href="#" ui-sref="main.storage.data_archive">Storage</a>
+                </li>
+            </ul>
+
+            <!-- User Information -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" ng-click="show_profile()">
+                        <span class="glyphicon glyphicon-user"></span> Profile
+                    </a>
+                </li>
+                <li><a href="#" ui-sref="main.help">Help</a></li>
+            </ul>
+
+            <!-- Start and Stop Commands Dropdown List -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ng-click="show_settings_menu()">
+                        <span class="glyphicon glyphicon-cog"></span> Settings <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li id="flow_in_start" >
+                            <a href="#" ng-click="flowin_start()"><span class="glyphicon glyphicon-play-circle"></span> Flow In Start</a>
+                        </li>
+                        <li id="flow_in_stop">
+                            <a href="#" ng-click="flowin_stop()"><span class="glyphicon glyphicon-off"></span> Flow In Stop</a>
+                        </li>
+                        <li id="flow_in_reset">
+                            <a href="#" ng-click="flowin_reset()"><span class="glyphicon glyphicon-refresh"></span> Flow In Reset</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li id="flow_out_start">
+                            <a href="#" ng-click="flowout_start()"><span class="glyphicon glyphicon-play-circle"></span> Flow Out Start</a>
+                        </li>
+                        <li id="flow_out_stop">
+                            <a href="#" ng-click="flowout_stop()"><span class="glyphicon glyphicon-off"></span> Flow Out Stop</a>
+                        </li>
+                        <li id="flow_out_reset">
+                            <a href="#" ng-click="flowout_reset()"><span class="glyphicon glyphicon-refresh"></span> Flow Out Reset</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li id="flow_tjl_start">
+                            <a href="#" ng-click="flowtjl_start()"><span class="glyphicon glyphicon-play-circle"></span> Flow Tjl Start</a>
+                        </li>
+                        <li id="flow_tjl_stop">
+                            <a href="#" ng-click="flowtjl_stop()"><span class="glyphicon glyphicon-off"></span> Flow Tjl Stop</a>
+                        </li>
+                        <li id="flow_tjl_reset">
+                            <a href="#" ng-click="flowtjl_reset()"><span class="glyphicon glyphicon-refresh"></span> Flow Tjl Reset</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Warning infomation Button -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="btn btn-success btn-nav" id="warning_btn" style="color: #fff;"
+                    ng-click="set_warning_btn('none')">Warning</a>
+                </li>
+            </ul>
+
+            <!-- Kick State Lights -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><canvas id="kick_red" width="40" height="50"></canvas></li>
+                <li><canvas id="kick_yellow" width="40" height="50"></canvas></li>
+                <li><canvas id="kick_green" width="45" height="50"></canvas></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Content View -->
+<div class="container-fluid ekd_page_width">
+    <div class="row" ui-view="content"></div>
+</div>
+
+<!-- Warning Dialog -->
+<div class="modal fade" id="warning_modal" tabindex="-1" role="dialog" aria-labelledby="warning modal ...">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title"><span class="glyphicon glyphicon-exclamation-sign"></span> WARNING INFOMATION</h3>
+            </div>
+            <div class="modal-body">
+                <form name="errinfo_frm" action="#">
+                    <textarea name="errinfo_box" class="form-control" style="resize: none" rows="20" readonly ng-model="errinfo"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="profile_modal" tabindex="-1" role="dialog" aria-labelledby="Profile Modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><span class="glyphicon glyphicon-user"></span> User</h3>
+            </div>
+            <div class="modal-body bg-info">
+                <ul class="list-group">
+                    <li class="list-group-item">User Name: {{user.userName}}</li>
+                    <li class="list-group-item">User Role: {{user.userRole}}</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="user_logout()" ng-disabled="!isAuthenticated">Logout</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirm_meter_control" tabindex="-1" role="dialog" aria-labelledby="Confirm Control">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><span class="glyphicon glyphicon-question-sign"></span> Confirm Operation</h3>
+            </div>
+            <div class="modal-body bg-warning">
+                <div ng-show="settings.cur_command != 'reset'">
+                    <h4>You are about to perform the command:  <strong>{{settings.confirm_text}}</strong></h4>
+                    <h4>Continue?</h4>
+                </div>
+                <div ng-show="settings.cur_command == 'reset'">
+                    <h4>You are about to perform the command:  <strong>{{settings.confirm_text}}</strong></h4>
+                    <label>Please select the desired reset mode:</label>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="checkbox">
+                                <label><input type="checkbox" ng-model="settings.reset_afe" ng-true-value="1" ng-false-value="0" /> Reset AFE</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" ng-model="settings.reset_come" ng-true-value="1" ng-false-value="0" /> Reset COME</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel_command()">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="confirm_command()">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="progress_bar_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label>Waiting for system configuration...</label>
+                <div class="progress">
+                   <!-- <div id="sys_progress_bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div> -->
+                   <div id="sys_progress_bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

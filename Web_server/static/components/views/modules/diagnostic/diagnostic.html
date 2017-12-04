@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li id="environment">
+                    <a href="#" ui-sref="main.diagnostic.environment.flowout">Environment</a>
+                </li>
+                <li id="power">
+                    <a href="#" ui-sref="main.diagnostic.power.flowout">Power</a>
+                </li>
+                <li id="transducer">
+                    <a href="#" ui-sref="main.diagnostic.transducer.flowout">Transducer</a>
+                </li>
+                <li id="algorithm">
+                    <a href="#" ui-sref="main.diagnostic.algorithm.flowout">Algorithm</a>
+                </li>
+                <li id="communication">
+                    <a href="#" ui-sref="main.diagnostic.communication.flowout">Communication</a>
+                </li>
+                <li id="witts">
+                    <a href="#" ui-sref="main.diagnostic.witts">WITTS</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 col-md-offset-2" ui-view>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong>Up Layer</strong></h1>
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th ng-repeat="item in transducer_state.slice(0,10)" class="text-center">
+                <h4><span class="label label-primary">#{{item.index + 1}}</span></h4>
+            </th>
+        </tr>
+        <tr>
+            <td ng-repeat="item in transducer_state.slice(0,10)" trsrepeat-finish="init_all_trs('level1')" class="text-center">
+                <transducer2></transducer2>
+            </td>
+        </tr>
+    </table>
+    <div class="panel-footer"></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong>Down Layer</strong></h1>
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th ng-repeat="item in transducer_state.slice(10,20)" class="text-center">
+                <h4><span class="label label-primary">#{{item.index + 1}}</span></h4>
+            </th>
+        </tr>
+        <tr>
+            <td ng-repeat="item in transducer_state.slice(10,20)" trsrepeat-finish="init_all_trs('level2')" class="text-center">
+                <transducer2></transducer2>
+            </td>
+        </tr>
+    </table>
+    <div class="panel-footer"></div>
+</div>
+<!-- <div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong>Lower Layer</strong></h1>
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th ng-repeat="item in transducer_state.slice(20,30)" class="text-center">
+                <h4><span class="label label-primary">#{{item.index + 1}}</span></h4>
+            </th>
+        </tr>
+        <tr>
+            <td ng-repeat="item in transducer_state.slice(20,30)" trsrepeat-finish="init_all_trs('level3')" class="text-center">
+                <transducer2></transducer2>
+            </td>
+        </tr>
+    </table>
+    <div class="panel-footer"></div>
+</div> -->
+

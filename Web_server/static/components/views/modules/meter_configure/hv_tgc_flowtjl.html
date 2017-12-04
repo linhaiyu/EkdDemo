@@ -1,0 +1,151 @@
+<!-- FlowTjl High Voltage Configuration -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong>High Voltage Configuration</strong></h1>
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <button id="hv_turn_on_bt" class="btn btn-success btn-block btn-lg" ng-click="turn_on_hv()" ng-disabled="hv_lock_state || hv_switch_state == 'turn_on'">Turn On</button>
+                </div>
+                <div class="col-md-6">
+                    <button id="hv_trun_off_bt" class="btn btn-danger btn-block btn-lg" ng-click="turn_off_hv()" ng-disabled="hv_lock_state || hv_switch_state == 'turn_off'">Turn Off</button>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row" ng-hide="hv_switch_state == 'turn_off'">
+                <form id="high_voltage_configuration" name="high_voltage_configuration" role="form" class="form-horizontal w5c-form" w5c-form-validate="vm.validateOptions" novalidate>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label" for="hv_positive">HV Positive</label>
+                        <div class="col-md-10 controls">
+                            <input type="number" class="form-control" id="hv_positive" name="hv_positive"
+                            style="width:25%" min="0" max="250" value="0" ng-model="hv_positive_val" ng-disabled="hv_lock_state" required="" />
+                            <p class="help-block">High voltage positive, the range is [0, 250]</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="col-md-2 control-label" for="hv_negative">HV Negative</label>
+                        <div class="col-md-10 controls">
+                            <input type="number" class="form-control" id="hv_negative" name="hv_negative"
+                            style="width:25%" min="-250" max="0" value="0" ng-model="hv_negative_val" ng-disabled="hv_lock_state" required="" />
+                            <p class="help-block">High voltage negative, the range is [-250, 0]</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="reset" class="btn btn-default" ng-click="reset_hv_setting()" value="Reset" ng-disabled="hv_lock_state" />
+                        <input type="submit" class="btn btn-info" value="Confirm" ng-disabled="hv_lock_state" w5c-form-submit="confirm_hv_setting()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"> <strong>TGC Configuration</strong></h1>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="tgc_mode_selector" class="col-md-4">Tgc Mode</label>
+                    <div class="col-md-8">
+                        <select name="tgc_mode_selector" id="tgc_mode_selector" class="form-control" ng-model="tgc_mode" ng-disabled="tgc_lock_state">
+                            <option value="static">Static Mode</option>
+                            <option value="dynamic">Dynamic Mode</option>
+                        </select>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <br>
+        <div class="row" ng-show="tgc_mode == 'static'">
+            <div class="col-md-5">
+                <div class="control-group">
+                    <label class="control-label">Select Configuration Type</label><br>
+                    <button class="btn btn-default" style="font-weight:bold" id="configure_tgc_static"
+                        ng-click="tgc_lock_state || show_flowtjl_tgc_static()"  ng-disabled="tgc_lock_state">TGC Curve Configuration</button>
+                    <button class="btn btn-default" style="font-weight:bold" id="configure_const_static"
+                        ng-click="tgc_lock_state || show_flowtjl_constgain_static()"  ng-disabled="tgc_lock_state">Constant Gain</button>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="control-group" ng-show="tgc_flowtjl_type == 'tgc'">
+                    <label for="flowtjl_tgc_selector" class="control-label">TGC Curve Configuration</label>
+                    <form class="form-inline">
+                        <select name="mysel" id="flowtjl_tgc_selector" class="form-control" ng-disabled="tgc_lock_state">
+                            <option ng-repeat="item in tgc_curve" value="{{item.name}}">{{item.name}}</option>
+                            <!--<option value="f1">Configuration file a</option>
+                            <option value="f2">Configuration file b</option>
+                            <option value="f3">Configuration file c</option>
+                            <option value="f4">Configuration file d</option>-->
+                        </select>
+                        <button class="btn btn-info" ng-click="set_flowtjl_tgc()" ng-disabled="tgc_lock_state">Confirm</button>
+                        <p class="help-block">Chose a TGC Curve configuration file in the list</p>
+                    </form>
+                </div>
+
+                <div class="control-group" ng-show="tgc_flowtjl_type == 'constant'">
+                    <label for="flowtjl_const_gain" class="control-label">Constant Gain</label>
+                    <form id="flowtjl_const_gain_form" name="flowtjl_const_gain_form" class="form-inline w5c-form" role="form" w5c-form-validate="vm.validateOptions" novalidate>
+                        <input type="number" class="form-control" id="flowtjl_const_gain" name="flowtjl_const_gain" min="-10" max="100" value="0" ng-model="flowtjl_const_gain" ng-disabled="tgc_lock_state" required="" />
+                        <input type="submit" class="btn btn-info" value="Confirm" ng-disabled="tgc_lock_state" w5c-form-submit="set_flow_constgain()" />
+                        <p class="help-block">Constant gain, the range is [-10, 100]</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="tgc_mode == 'dynamic'">
+            <div class="col-md-5">
+                <div class="control-group">
+                    <label class="control-label">Select Configuration Type</label><br>
+                    <button class="btn btn-default" style="font-weight:bold" id="configure_tgc_dynamic"
+                        ng-click="tgc_lock_state || show_flowtjl_tgc_dynamic()"  ng-disabled="tgc_lock_state">TGC Curve Configuration</button>
+                    <button class="btn btn-default" style="font-weight:bold" id="configure_const_dynamic"
+                        ng-click="tgc_lock_state || show_flowtjl_constgain_dynamic()"  ng-disabled="tgc_lock_state">Constant Gain</button>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="control-group" ng-show="tgc_flowtjl_dynamic_type == 'tgc'">
+                    <label for="tgc_dynamic_h_selector" class="control-label">TGC Curve Configuration</label>
+                    <form class="form-inline">
+                        <select name="tgc_dynamic_h_selector" id="tgc_dynamic_h_selector" class="form-control" ng-disabled="tgc_lock_state">
+                            <option ng-repeat="item in tgc_curve" value="{{item.name}}">{{item.name}}</option>
+                            <!--<option value="f1">Configuration file a</option>
+                            <option value="f2">Configuration file b</option>
+                            <option value="f3">Configuration file c</option>
+                            <option value="f4">Configuration file d</option>-->
+                        </select>
+                        <select name="tgc_dynamic_l_selector" id="tgc_dynamic_l_selector" class="form-control" ng-disabled="tgc_lock_state">
+                            <option ng-repeat="item in tgc_curve" value="{{item.name}}">{{item.name}}</option>
+                            <!--<option value="f1">Configuration file a</option>
+                            <option value="f2">Configuration file b</option>
+                            <option value="f3">Configuration file c</option>
+                            <option value="f4">Configuration file d</option>-->
+                        </select>                        
+                        <button class="btn btn-info" ng-click="set_dynamic_tgc()" ng-disabled="tgc_lock_state">Confirm</button>
+                        <p class="help-block">Chose a TGC Curve configuration file in the list</p>
+                    </form>
+                </div>
+
+                <div class="control-group" ng-show="tgc_flowtjl_dynamic_type == 'constant'">
+                    <label for="dyanmic_const_gain_form" class="control-label">Constant Gain</label>
+                    <form id="dyanmic_const_gain_form" name="dyanmic_const_gain_form" class="form-inline w5c-form" role="form" w5c-form-validate="vm.validateOptions" novalidate>
+                        <input type="number" class="form-control" id="dynamic_h_gain" name="dynamic_h_gain" min="-10" max="100" value="0" ng-model="dynamic_h_gain" ng-disabled="tgc_lock_state" required="" />
+                        <input type="number" class="form-control" id="dynamic_l_gain" name="dynamic_l_gain" min="-10" max="100" value="0" ng-model="dynamic_l_gain" ng-disabled="tgc_lock_state" required="" />
+                        <input type="submit" class="btn btn-info" value="Confirm" ng-disabled="tgc_lock_state" w5c-form-submit="set_dynamic_constgain()" />
+                        <p class="help-block">Constant gain, the range is [-10, 100]</p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

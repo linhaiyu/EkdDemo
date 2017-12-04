@@ -1,0 +1,164 @@
+<!-- Board Temperatures  -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong>Board Temperatures</strong></h1>
+    </div>
+
+    <table class="table table-bordered">
+        <tr class="success">
+            <td>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_0" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_1" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_2" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_3" height="260" width="100"></canvas>
+                       </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center"><h4>BOARD <span class="label label-default">1</span></h4></div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_4" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_5" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_6" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_7" height="260" width="100"></canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center"><h4>BOARD <span class="label label-default">2</span></h4></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr class="success">
+            <td>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_8" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_9" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_10" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_11" height="260" width="100"></canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center"><h4>BOARD <span class="label label-default">3</span></h4></div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_12" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_13" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_14" height="260" width="100"></canvas>
+                        </div>
+                        <div class="col-md-3">
+                            <canvas id="bd_thermometer_15" height="260" width="100"></canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center"><h4>BOARD <span class="label label-default">4</span></h4></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- Transducer Temperatures -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong>Transducer Temperatures</strong></h1>
+    </div>
+
+    <table class="table table-bordered">
+        <tr class="success">
+            <td>
+                <canvas class="center-block" id="trs_thermometer_0" height="260" width="100"></canvas>
+                <div class="text-center"><h4>Transducer <span class="label label-default">1</span></h4></div>
+            </td>
+            <td>
+                <canvas class="center-block" id="trs_thermometer_1" height="260" width="100"></canvas>
+                <div class="text-center"><h4>Transducer <span class="label label-default">2</span></h4></div>
+            </td>
+            <td>
+                <canvas class="center-block" id="trs_thermometer_2" height="260" width="100"></canvas>
+                <div class="text-center"><h4>Transducer <span class="label label-default">3</span></h4></div>
+            </td>
+            <td>
+                <canvas class="center-block" id="trs_thermometer_3" height="260" width="100"></canvas>
+                <div class="text-center"><h4>Transducer <span class="label label-default">4</span></h4></div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><strong>Humidity</strong></h1>
+                </div>
+                <div class="panel-body">
+                    <canvas class="center-block" id="humidity_chart" height="250" width="250"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><strong>Water Leak</strong></h1>
+                </div>
+                <div class="panel-body">
+                    <div class="center-block">
+                        <h3><span id="water_leak_indicator" class="center-block label label-success">    </span></h3>
+                        <h3><span id="water_leak_text" class="center-block text-center" style="color:#5CB85C">WELL</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><strong>Accelerator</strong></h1>
+                </div>
+                <div class="panel-body">
+                    <canvas class="center-block" id="accelerator_chart" height="250" width="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
